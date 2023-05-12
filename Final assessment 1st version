@@ -1,0 +1,57 @@
+from tkinter import*
+root = Tk()
+root.title('ScienceQuiz')
+root.geometry('500x500')
+
+#creating questions answers with radio buttons
+def questions_and_answers():    
+    lblUser = Label(text='Question 1: How do plants prepare food?')
+    lblUser.grid(row=0,column=0)
+
+    rad1 = Radiobutton(root,text='a. Roots prepare food',value =1)
+    rad2 = Radiobutton(root,text='b. Flowers prepare food',value =2)
+    rad3 = Radiobutton(root,text='c. Leaves help in preparation of food',value =3)
+    rad4 = Radiobutton(root,text='d. All of them',value =4)
+
+    rad1.grid(column=0,row=2)
+    rad2.grid(column=0,row=3)
+    rad3.grid(column=0,row=4)
+    rad4.grid(column=0,row=5)
+
+    #Create a button for checking answers
+
+    from tkinter import messagebox
+    root = Tk()
+    root.title('ScienceQuiz')
+    root.geometry('100x100')
+    
+    btnEnter = Button(root,text='Enter', command=lambda: show_custom_message_box("ScienceQuiz", "Well done! onto the next stage!" or "Oops! Try again!", width=100, height= 100))
+    btnEnter.grid(row=6,column=0)
+
+    answer = rad3 == Radiobutton(root,text='c. Leaves help in preparation of food',value =3)
+    if answer == rad3 == Radiobutton(root,text='c. Leaves help in preparation of food',value =3):
+        show_custom_message_box("ScienceQuiz", "Well done! onto the next stage!", width=100, height= 100)
+    else:
+        show_custom_message_box("ScienceQuiz", "Oops! Try again!", width=100, height= 100)
+
+    #Create a Toplevel window for the message box
+    msg_box = Toplevel()
+    msg_box.title(title)
+    msg_box.geometry(f"{width}x{height}")
+
+    #Add a message label to display message
+    msg_label = Label(msg_box, text=message)
+    msg_label.pack(padx=20, pady=20)
+
+    #create button to close message box
+    ok_button = Button(msg_box, text="OK", command=msg_box.destroy)
+    ok_button.pack(pady=10)
+
+    #Make the message box modal (i.e. disable the main window)
+    msg_box.transient(master=root)
+    msg_box.grab_set()
+
+    #Wait for the message box to be closed before returning
+    root.wait_window(msg_box)
+
+questions_and_answers()
