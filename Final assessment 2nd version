@@ -1,0 +1,45 @@
+from tkinter import*
+root = Tk()
+root.title('ScienceQuiz')
+root.geometry('500x500')
+from tkinter import messagebox
+
+#creating questions answers with radio buttons
+def questions_and_answers():    
+    lblUser = Label(text='Question 1: How do plants prepare food?')
+    lblUser.grid(row=0,column=0)
+
+    rad1 = Radiobutton(root,text='a. Roots prepare food',value =1)
+    rad2 = Radiobutton(root,text='b. Flowers prepare food',value =2)
+    rad3 = Radiobutton(root,text='c. Leaves help in preparation of food',value =3)
+    rad4 = Radiobutton(root,text='d. All of them',value =4)
+
+    rad1.grid(column=0,row=2)
+    rad2.grid(column=0,row=3)
+    rad3.grid(column=0,row=4)
+    rad4.grid(column=0,row=5)
+
+    def submit_button():
+        btn = Button(root, text="Submit your answer", command=lambda: show_custom_message_box("ScienceQuiz", "That is correct!", "Sorry..wrong answer, please try again", width=400, height=200))
+        btn.gris(row=6,column=0)
+
+    #Create response for right or wrong answer
+    
+    def show_custom_message_box(title, message, width=300, height=150):
+        if self.var.get():
+            msg == 'That is correct!'
+        else:
+            msg == 'Sorry..wrong answer, please try again'
+
+        print(msg) #messagebox with message
+        top = Toplevel()
+        top.title("ScienceQuiz")
+        msg = Message(top, text=msg)
+        msg.pack()
+        button = Button(top, text="OK", command=top.destroy)
+        button.pack
+            
+
+root = Tk()
+questions_and_answers()
+
