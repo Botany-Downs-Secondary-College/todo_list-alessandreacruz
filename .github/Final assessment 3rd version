@@ -1,0 +1,67 @@
+import tkinter as tk
+from tkinter import*
+root = Tk()
+root.title('ScienceQuiz')
+root.geometry('500x500')
+from tkinter import messagebox
+
+module = StringVar()
+
+#creating questions answers with radio buttons
+def questions_and_answers():    
+    lblUser = Label(text='Question 1: How do plants prepare food?')
+    lblUser.grid(row=0,column=0)
+
+    rad1 = Radiobutton(root,text='a. Roots prepare food', variable=module, value =1)
+    rad2 = Radiobutton(root,text='b. Flowers prepare food', variable=module, value =2)
+    rad3 = Radiobutton(root,text='c. Leaves help in preparation of food', variable=module, value =3)
+    rad4 = Radiobutton(root,text='d. All of them', variable=module, value =4)
+
+    rad1.grid(column=0,row=2)
+    rad2.grid(column=0,row=3)
+    rad3.grid(column=0,row=4)
+    rad4.grid(column=0,row=5)
+
+    btn = Button(root, text="Submit your answer", command=lambda: show_custom_message_box("ScienceQuiz", "That is correct!", width=400, height=200))
+    btn.grid(row=6,column=0)
+
+#Submitting your chosen answer
+    def select_answer():
+        if module.get() == 'c. Leaves help in preparation of food':
+            btn = Button(root, text="Submit your answer", command=lambda: show_custom_message_box("ScienceQuiz", "That is correct!", width=400, height=200))
+            btn.grid(row=6,column=0)
+            ok_button = Button(msg_box, text="OK", command=msg_box.destroy)
+            ok_button.pack(pady=10)
+        else:
+            btn = Button(root, text="Submit your answer", command=lambda: show_custom_message_box("ScienceQuiz", "Sorry, wrong answer..Try again", width=400, height=200))
+            btn.grid(row=6,column=0)
+            ok_button = Button(msg_box, text="OK", command=msg_box.destroy)
+            ok_button.pack(pady=10)
+
+    def show_custom_message_box(title, message, width=300, height=300):
+        msg_box = Toplevel()
+        msg_box.title(title)
+        msg_box.geometry(f"{width}x{height}")
+        
+        #Add a message label to display the message
+        msg_label = Label(msg_box, text=message)
+        msg_label.pack(padx=20, pady=20)
+    
+        #Add button to close message box
+        ok_button = Button(msg_box, text="OK", command=msg_box.destroy)
+        ok_button.pack(pady=10)
+
+        #Make the message box modal (i.e. disable the main window)
+        msg_box.transient(master=root)
+        msg_box.grab_set()
+
+        #Wait for the message box to be closed before returning
+        root.wait_window(msg_box)
+
+        #Create a button to submit answer
+        btn = Button(root, text="Submit your answer", command=lambda: show_custom_message_box ("ScienceQuiz", "That is correct!", width=400, height=200))
+        btn.grid(row=6,column=0)
+
+questions_and_answers()
+root.mainloop()
+
